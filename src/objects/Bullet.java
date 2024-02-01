@@ -1,5 +1,6 @@
 package objects;
 
+import core.Sound;
 import render.Renderable;
 import render.Renderer;
 import update.Updateable;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.File;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Bullet implements Updateable, Renderable {
     private static double width = 10;
@@ -25,7 +28,7 @@ public class Bullet implements Updateable, Renderable {
 
     private static BufferedImage bullet;
 
-    private static double speed = 1200;
+    private static double speed = 800;
 
     public Bullet(double x, double y) throws IOException {
         this.x = x - (getWidth() / 2);
@@ -68,13 +71,38 @@ public class Bullet implements Updateable, Renderable {
     }
 
     @Override
-    public void update() throws IOException {
+    public void update() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         y -= speed * FPS.getDeltaTime();
 
         if (y < -getHeight()) {
-            Updater.removeUpdateableObjects(this);
+            Updater.removeUpdateableObject(this);
             Renderer.removeRenderableObject(this);
+        }
+
+        Updateable collidingObject = isColliding(this, "asteroid");
+        if (collidingObject != null) {
+            Updater.removeUpdateableObject(this);
+            Renderer.removeRenderableObject(this);
+
+            Updater.removeUpdateableObject(collidingObject);
+            Renderer.removeRenderableObject(collidingObject.getRenderable());
+
+            Sound.playSound("res/stolknovenie-razrusheniya-treniya-igryi-kollektsiya-ustranit-42222.wav");
         }
     }
 
+    @Override
+    public String getID() {
+        return "bullet";
+    }
+
+    @Override
+    public Renderable getRenderable() {
+        return this;
+    }
+
+    @Override
+    public boolean drawCollisionBox() {
+        return true;
+    }
 }

@@ -1,5 +1,6 @@
 package core;
 
+import render.Renderable;
 import update.Updateable;
 import update.Updater;
 
@@ -29,5 +30,15 @@ public class Timer implements Updateable {
 
     public void resetTimer() {
         setMillisTime = beginningMillisTime;
+    }
+
+    @Override
+    public String getID() {
+        return null;
+    }
+
+    @Override
+    public Renderable getRenderable() {
+        return null;
     }
 }

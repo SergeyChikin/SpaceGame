@@ -81,8 +81,23 @@ public class Asteroid implements Updateable, Renderable{
       y += speed * FPS.getDeltaTime();
 
         if (y >= Window.getWinHeight()) {
-            Updater.removeUpdateableObjects(this);
+            Updater.removeUpdateableObject(this);
             Renderer.removeRenderableObject(this);
         }
+    }
+
+    @Override
+    public String getID() {
+        return "asteroid";
+    }
+
+    @Override
+    public Renderable getRenderable() {
+        return this;
+    }
+
+    @Override
+    public boolean drawCollisionBox() {
+        return true;
     }
 }

@@ -3,6 +3,9 @@ package core;
 import java.time.Duration;
 import java.time.Instant;
 
+/**
+ * class for calculate FPS(frame per second);
+ */
 public class FPS {
     private FPS() {}
 

@@ -1,6 +1,7 @@
 package objects;
 
 import core.Timer;
+import render.Renderable;
 import update.Updateable;
 import update.Updater;
 
@@ -19,6 +20,16 @@ public class AsteroidSpawner implements Updateable {
             new Asteroid();
             timer.resetTimer();
         }
+    }
+
+    @Override
+    public String getID() {
+        return null;
+    }
+
+    @Override
+    public Renderable getRenderable() {
+        return null;
     }
 
 }

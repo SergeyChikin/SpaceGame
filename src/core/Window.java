@@ -20,10 +20,10 @@ public class Window extends JFrame {
     public void packWindow() {
         pack();
         setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     private void setWindowAttributes() {
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

@@ -15,15 +15,15 @@ import java.io.IOException;
 public class Background implements Renderable, Updateable {
 
     private static double width = Window.getWinWidth();
-    private static double height = Window.getWinHeight();
-    private static double x;
+    private static double height = Window.getWinHeight() * 2;
+    private static double x = 0;
     private double y;
 
     private final int layer = 0;
 
     private static BufferedImage background;
 
-    private double speed = 150;
+    private double speed = 200;
 
     public Background(double y) throws IOException {
         this.y = y;
@@ -63,11 +63,26 @@ public class Background implements Renderable, Updateable {
     }
 
     @Override
-    public void update() {
+    public void update() throws IOException{
         y += speed * FPS.getDeltaTime();
 
-        if (y >= Window.getWinHeight()) {
+        if (y >= 0) {
             y = -Window.getWinHeight();
         }
+    }
+
+    @Override
+    public String getID() {
+        return null;
+    }
+
+    @Override
+    public Renderable getRenderable() {
+        return null;
+    }
+
+    @Override
+    public boolean drawCollisionBox() {
+        return false;
     }
 }
