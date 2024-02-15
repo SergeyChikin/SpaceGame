@@ -11,6 +11,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class Entry {
+
+    static boolean pause = false;
+
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         Window window = new Window("SPACE GAME", Window.getWinWidth(), Window.getWinHeight());
         Renderer renderer = new Renderer();
@@ -28,12 +31,17 @@ public class Entry {
         new Background(-Window.getWinHeight());
         new AsteroidSpawner();
 
-
         FPS.calcBeginTime();
+
         while (runGame) {
+            FPS.calcDeltaTime();
+            if (pause) {
+                continue;
+            }
             updater.update();
             renderer.repaint();
-            FPS.calcDeltaTime();
         }
+
+
     }
 }

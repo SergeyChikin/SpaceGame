@@ -28,7 +28,8 @@ public class Background implements Renderable, Updateable {
     public Background(double y) throws IOException {
         this.y = y;
 
-        background = ImageIO.read(new File("res/istockphoto-904278188-1024x1024.jpg"));
+//        background = ImageIO.read(new File("res/istockphoto-904278188-1024x1024.jpg"));
+        background = ImageIO.read(new File("res/cosmos.jpg"));
         Renderer.addRenderableObject(this);
         Updater.addUpdateableObject(this);
     }

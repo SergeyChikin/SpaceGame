@@ -1,5 +1,7 @@
 package core;
 
+import objects.SpaceShip;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -23,7 +25,7 @@ public class Input implements KeyListener {
     @Override
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_LEFT)
-            keys[LEFT] = true; //todo возможно 0;
+            keys[0] = true;
         else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
             keys[1] = true;
         else if (event.getKeyCode() == KeyEvent.VK_UP)
@@ -32,12 +34,16 @@ public class Input implements KeyListener {
             keys[3] = true;
         else if (event.getKeyCode() == KeyEvent.VK_SPACE)
             keys[4] = true;
+
+        else if (event.getKeyCode() == KeyEvent.VK_ENTER) {
+            Entry.pause = !Entry.pause;
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_LEFT)
-            keys[LEFT] = false;
+            keys[0] = false;
         else if (event.getKeyCode() == KeyEvent.VK_RIGHT)
             keys[1] = false;
         else if (event.getKeyCode() == KeyEvent.VK_UP)
